@@ -17,7 +17,7 @@ function PostPage(props) {
       <Segment>
         <Header as="h4">What do you want to ask or share?</Header>
         {
-        postType === "question" ? (<QuestionForm onPost={props.onPost} />) : (<ArticleForm onPost={props.onPost} />)
+        postType === "question" ? (<QuestionForm  />) : (<ArticleForm  />)
         }
       </Segment>
     </Container>
