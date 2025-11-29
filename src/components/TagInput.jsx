@@ -48,8 +48,8 @@ function TagInput(props) {
                 style={{ marginLeft: "6px", cursor: "pointer" }}
                 onClick={function () { removeTag(i); }}
               >
-                ×
-              </span>
+
+                 </span>
             </Label>
           );
         })}

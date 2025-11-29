@@ -1,20 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "./firebase";
-import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
-import {
-  Input,
-  Card,
-  Button,
-  Label,
-  Icon,
-} from "semantic-ui-react";
+import {collection,query,orderBy,onSnapshot,deleteDoc,doc,} from "firebase/firestore";
+import {Input,Card,Button,Label,Icon,} from "semantic-ui-react";
 import "./FindQuestionPage.css";
 
 function FindQuestionPage() {

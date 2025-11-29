@@ -7,6 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 
 function ArticleForm(props) {
   const [title, setTitle] = useState("");
+  const [references, setReferences] = useState("");
   const [abstract, setAbstract] = useState("");
   const [text, setText] = useState("");
   const [tags, setTags] = useState([]);
@@ -14,7 +15,6 @@ function ArticleForm(props) {
   const [imageUrl, setImageUrl] = useState("");
   const [uploading, setUploading] = useState(false);
 
-  // Replace with your Cloudinary details
   const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dw0bxzmum/image/upload";
   const CLOUDINARY_PRESET = "task8.1";
 
@@ -34,7 +34,7 @@ function ArticleForm(props) {
       alert("Please fill in all required fields.");
       return;
     }
-    // Ensure the image gets uploaded before saving
+
     let url = imageUrl;
     if (image && !imageUrl) {
       await handleImageUpload(image);
@@ -43,6 +43,7 @@ function ArticleForm(props) {
     const postData = {
       type: "article",
       title: title.trim(),
+      references: references.trim(),
       abstract: abstract.trim(),
       articleText: text.trim(),
       tags: tags,
@@ -51,7 +52,7 @@ function ArticleForm(props) {
     };
     
     await addDoc(collection(db, "posts"), postData);
-    setTitle(""); setAbstract(""); setText(""); setTags([]); setImage(null); setImageUrl("");
+    setTitle(""); setReferences("");  setAbstract(""); setText(""); setTags([]); setImage(null); setImageUrl("");
   }
 
   return (
@@ -60,6 +61,12 @@ function ArticleForm(props) {
         <label>Title</label>
         <input value={title} onChange={e => setTitle(e.target.value)} placeholder="Article Title" />
       </Form.Field>
+
+      <Form.Field>
+        <label>References</label>
+        <input value={references} onChange={e => setReferences(e.target.value)} placeholder="References" />
+      </Form.Field>
+
       <Form.Field>
         <label>Abstract</label>
         <TextArea value={abstract} onChange={e => setAbstract(e.target.value)} placeholder="Abstract" />
